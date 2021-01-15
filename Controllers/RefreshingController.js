@@ -1,4 +1,7 @@
 const express = require('express');
+const RefreshingService = require('../Services/RefreshingService.js')
+
+let _rs = RefreshingService.repository
 
 class RefreshingController {
     constructor() {
@@ -14,7 +17,8 @@ class RefreshingController {
 
    async getAll(req, res, next){
     try {
-    
+        let data = await _rs.find({})
+        return res.send(data)
     } catch (error) {
         next(error)
     }
